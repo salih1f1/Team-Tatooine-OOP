@@ -1,29 +1,27 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using OopProject.Characters;
+using OopProject.Enumeration;
 
 namespace OopProject
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Texture2D bot;
+        private Texture2D villian; // Initialize field for villian image
+        private Texture2D warrior; // Initialize field for warrior image
+        private Texture2D background; // Initialize field for warrior image
+        private AnimatedSprite villianAnimation; // Initialize field for villian animation
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -31,25 +29,18 @@ namespace OopProject
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            bot = Content.Load<Texture2D>("");
-            // TODO: use this.Content to load your game content here
+            this.villian = Content.Load<Texture2D>("TextureAtlases/BadGuy");
+            this.background = Content.Load<Texture2D>("TextureAtlases/amarati");
+            villianAnimation = new AnimatedSprite(villian, (int)TextureAtlasConstants.WalkRightRow, (int)TextureAtlasConstants.WalkEndCol);
+            this.spriteBatch = new SpriteBatch(GraphicsDevice);
         }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
+     
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // UnloadContent will be called once per game and is the place to unload
+            // game-specific content.
         }
 
         /// <summary>
@@ -61,21 +52,17 @@ namespace OopProject
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
-
+            
+            villianAnimation.Update();
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White); //IMPORTANT! First draw background
+            villianAnimation.Draw(spriteBatch, new Vector2(0, 0));
 
             base.Draw(gameTime);
         }

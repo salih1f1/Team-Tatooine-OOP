@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace OopProject
 {
@@ -19,8 +15,9 @@ namespace OopProject
             }
             else
             {
-                warrior = Loader.LoadImg(path);
+                //warrior = Loader.LoadImg(path);
             }
+            return warrior;
         }
     }
 }

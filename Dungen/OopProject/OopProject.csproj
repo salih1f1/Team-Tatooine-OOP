@@ -38,16 +38,19 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Characters\AnimatedSprite.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Mage.cs" />
     <Compile Include="Characters\Tank.cs" />
+    <Compile Include="Characters\Vallian.cs" />
     <Compile Include="Characters\Warrior.cs" />
-    <Compile Include="Enumeration\Characters.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="ImageAlbum.cs" />
+    <Compile Include="Interfaces\IAnimatedSprite.cs" />
     <Compile Include="Interfaces\IAttack.cs" />
     <Compile Include="Interfaces\IDamage.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
+    <Compile Include="Enumeration\TextureAtlasConstants.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Loader\Loader.cs" />
     <Compile Include="Program.cs" />
@@ -62,11 +65,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\TextureAtlases\amarati.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
+    <Content Include="Content\TextureAtlases\BadGuy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TextureAtlases\GoodGuy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
