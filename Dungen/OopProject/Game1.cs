@@ -15,6 +15,7 @@ namespace OopProject
         private Texture2D warrior; // Initialize field for warrior image
         private Texture2D background; // Initialize field for warrior image
         private AnimatedSprite villianAnimation; // Initialize field for villian animation
+        private Vector2 initVector = new Vector2(10, 10); //vector for vallian
 
         public Game1()
         {
@@ -33,7 +34,7 @@ namespace OopProject
         {
             this.villian = Content.Load<Texture2D>("TextureAtlases/BadGuy");
             this.background = Content.Load<Texture2D>("TextureAtlases/amarati");
-            villianAnimation = new AnimatedSprite(villian, (int)TextureAtlasConstants.WalkRightRow, (int)TextureAtlasConstants.WalkEndCol);
+            villianAnimation = new AnimatedSprite(villian, (int)TextureAtlasConstants.SpellcastRow, (int)TextureAtlasConstants.SpellcastEndCol);
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
         }
      
@@ -52,7 +53,7 @@ namespace OopProject
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
+            initVector = KeyboardInput.HandleKey(initVector);
             villianAnimation.Update();
             base.Update(gameTime);
         }
@@ -62,7 +63,7 @@ namespace OopProject
         {
             spriteBatch.Begin();
             spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White); //IMPORTANT! First draw background
-            villianAnimation.Draw(spriteBatch, new Vector2(0, 0));
+            villianAnimation.Draw(spriteBatch, initVector);
 
             base.Draw(gameTime);
         }
