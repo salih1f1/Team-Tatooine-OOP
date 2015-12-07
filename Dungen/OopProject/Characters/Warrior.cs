@@ -10,12 +10,27 @@ namespace OopProject.Characters
     {
         private const int Health = 200;
         private const int Mana = 200;
+        private double x;
+        private double y;
+
         public Warrior(string name, Texture2D text, int x, int y)
                : base(name, Mana, Health, text, x, y)
         {
-
+            this.X = x;
+            this.Y = y;
         }
 
+        public double X //get current x pos for warrior
+        {
+            get { return x; }
+            set { x = value; }
+        }
+
+        public double Y // get current y pos for warrior
+        {
+            get { return y; }
+            set { y = value; }
+        }
         public override void Attack()
         {
             throw new NotImplementedException();

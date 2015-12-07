@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.UI.WebControls;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace OopProject.Characters
@@ -10,7 +12,8 @@ namespace OopProject.Characters
     {
         private const int Health = 200;
         private const int Mana = 300;
-        public Vallian(string name, int health, int mana, Texture2D texture2D, int x, int y) : base(name, health, mana, texture2D, x, y)
+        private static int randomNumber = 0;
+        public Vallian(string name, Texture2D texture2D, int x, int y) : base(name, Health, Mana, texture2D, x, y)
         {
         }
 
@@ -27,6 +30,54 @@ namespace OopProject.Characters
         public override void Draw()
         {
             throw new NotImplementedException();
+        }
+
+        public static Vector2 NewPos(Vector2 vector) // get random position for x or y to move for  second
+        {
+            float x = vector.X;
+            float y = vector.Y;
+
+            Random rnd = new Random();
+            randomNumber = rnd.Next(1, 5);
+            switch (randomNumber)
+            {
+                case 1:
+                    x -= 3;
+                    break;
+                case 2:
+                    x += 3;
+                    break;
+                case 3:
+                    y -= 3;
+                    break;
+                case 4:
+                    y += 3;
+                    break;
+            }
+            return new Vector2(x, y);
+        }
+
+        public static Vector2 Move(Vector2 vector) // moving  second in this direction (x or y)
+        {
+            float x = vector.X;
+            float y = vector.Y;
+
+            switch (randomNumber)
+            {
+                case 1:
+                    x -= 3;
+                    break;
+                case 2:
+                    x += 3;
+                    break;
+                case 3:
+                    y -= 3;
+                    break;
+                case 4:
+                    y += 3;
+                    break;
+            }
+            return new Vector2(x, y);
         }
     }
 }
